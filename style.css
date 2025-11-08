@@ -1,0 +1,29 @@
+body {
+  font-family: "微軟正黑體", sans-serif;
+  background-color: #f2f2f2;
+  text-align: center;
+  margin-top: 100px;
+}
+
+h1 {
+  color: #006666;
+}
+
+p {
+  font-size: 18px;
+  color: #333;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #008b8b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #006060;
+}
