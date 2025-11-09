@@ -2,14 +2,43 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <title>project</title>
+  <title>小森雜貨店 🛍️</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>🎉 歡迎來到我網站！</h1>
-  <p>未規劃頁面 因為我很懶惰~</p>
+  <header>
+    <h1>🛍️ 小森雜貨店</h1>
+    <p>香氛・文具・生活小物｜療癒你的每一天 💕</p>
+  </header>
 
-  <button onclick="sayHi()">點我試試</button>
+  <nav>
+    <div class="filters">
+      <select id="category-filter" onchange="filterProducts()">
+        <option value="all">全部商品</option>
+        <option value="香氛">香氛</option>
+        <option value="杯子">杯子</option>
+        <option value="文具">文具</option>
+      </select>
+      <input type="text" id="search-box" placeholder="🔍 搜尋商品..." onkeyup="filterProducts()">
+    </div>
+    <button id="cart-button" onclick="toggleCart()">🛒 購物車 (<span id="cart-count">0</span>)</button>
+  </nav>
+
+  <main id="product-list" class="product-list">
+    <!-- JS 動態載入商品 -->
+  </main>
+
+  <!-- 🧺 購物車 -->
+  <div id="cart-panel" class="hidden">
+    <h3>🧺 購物車內容</h3>
+    <ul id="cart-items"></ul>
+    <p id="cart-total">總金額：$0</p>
+    <button onclick="checkout()">結帳</button>
+  </div>
+
+  <footer>
+    <p>© 2025 小森雜貨店 | Made with ❤️</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>

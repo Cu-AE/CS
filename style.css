@@ -1,29 +1,187 @@
 body {
   font-family: "微軟正黑體", sans-serif;
-  background-color: #f2f2f2;
-  text-align: center;
-  margin-top: 100px;
-}
-
-h1 {
-  color: #006666;
-}
-
-p {
-  font-size: 18px;
+  background-color: #fff8f5;
+  margin: 0;
+  padding: 0;
   color: #333;
 }
 
-button {
+header {
+  background: linear-gradient(135deg, #ffb6b9, #ffd5c2);
+  text-align: center;
+  padding: 25px 10px;
+  color: #333;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffe3d8;
   padding: 10px 20px;
-  font-size: 18px;
-  background-color: #008b8b;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+}
+
+#category-filter, #search-box {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+#search-box {
+  width: 160px;
+}
+
+#cart-button {
+  background-color: #ff9a8b;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#cart-button:hover {
+  background-color: #ff6f61;
+}
+
+.product-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  padding: 30px;
+}
+
+.product {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  width: 220px;
+  text-align: center;
+  padding: 15px;
+  transition: transform 0.25s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.product img {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.4s, filter 0.3s;
+}
+
+.product:hover img {
+  transform: scale(1.08);
+  filter: brightness(1.1);
+}
+
+/* 浮出「立即購買」文字 */
+.product::after {
+  content: "✨ 立即購買 ✨";
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  background: rgba(255, 154, 139, 0.85);
+  padding: 6px 0;
+  border-radius: 0 0 12px 12px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.product:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.price {
+  color: #e67e22;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+button {
+  background-color: #ff9a8b;
   color: white;
   border: none;
-  border-radius: 5px;
+  padding: 8px 12px;
+  border-radius: 6px;
   cursor: pointer;
+  margin-top: 5px;
+  transition: background 0.3s;
 }
 
 button:hover {
-  background-color: #006060;
+  background-color: #ff6f61;
+}
+
+/* 熱銷標籤 */
+.tag-hot {
+  position: absolute;
+  top: 10px;
+  left: -30px;
+  background: #ff6f61;
+  color: white;
+  padding: 5px 40px;
+  font-size: 12px;
+  transform: rotate(-45deg);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+#cart-panel {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: #fff;
+  border: 2px solid #ffb6b9;
+  border-radius: 12px;
+  width: 250px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.hidden {
+  display: none;
+}
+
+#cart-items {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+#cart-items li {
+  border-bottom: 1px solid #eee;
+  padding: 5px 0;
+}
+
+footer {
+  text-align: center;
+  background: #ffe3d8;
+  padding: 12px;
+  font-size: 14px;
+  margin-top: 30px;
+  color: #333;
 }
