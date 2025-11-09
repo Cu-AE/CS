@@ -91,23 +91,7 @@ nav {
   filter: brightness(1.1);
 }
 
-/* 浮出「立即購買」文字 */
-.product::after {
-  content: "✨ 立即購買 ✨";
-  position: absolute;
-  bottom: 15px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: white;
-  background: rgba(22, 145, 183, 0.85);
-  padding: 6px 0;
-  border-radius: 0 0 12px 12px;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.3s ease;
-  font-size: 14px;
-}
+
 
 .product:hover::after {
   opacity: 1;
