@@ -8,7 +8,8 @@ const products = [
   { name: "I am", price: 80, category: "ive", img: "https://picsum.photos/220?6", hot: false },
   { name: "jump", price: 120, category: "Blackpink", img: "https://picsum.photos/220?7", hot: true },
   { name: "3am", price: 120, category: "Rose", img: "https://picsum.photos/220?8", hot: true },
-  { name: "we are", price: 120, category: "idle", img: "https://picsum.photos/220?9", hot: true }
+  { name: "we are", price: 120, category: "idle", img: "https://picsum.photos/220?9", hot: true },
+  { name: "monster", price: 120, category: "babymonster", img: "https://picsum.photos/220?10", hot: true }
 ];
 
 let cart = [];
