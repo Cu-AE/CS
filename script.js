@@ -1,24 +1,25 @@
 // 商品資料（多加 hot 屬性）
 const products = [
-  { name: "dirty work", price: 350, category: "aespa", img: "https://picsum.photos/220?1", hot: false },
-  { name: "Rich Man ", price: 299, category: "aespa", img: "https://picsum.photos/220?0", hot: true },
-  { name: "dirty work", price: 350, category: "aespa", img: "https://picsum.photos/220?2", hot: false },
-  { name: "Blue Valentine", price: 250, category: "nmixx", img: "https://picsum.photos/220?3", hot: true },
-  { name: "Blue 2", price: 320, category: "nmixx", img: "https://picsum.photos/220?4", hot: false },
-  { name: "xoxz", price: 120, category: "ive", img: "https://picsum.photos/220?5", hot: true },
-  { name: "I am", price: 80, category: "ive", img: "https://picsum.photos/220?6", hot: false },
-  { name: "jump", price: 120, category: "Blackpink", img: "https://picsum.photos/220?7", hot: true },
-  { name: "3am", price: 120, category: "Rose", img: "https://picsum.photos/220?8", hot: true },
-  { name: "we are", price: 120, category: "idle", img: "https://picsum.photos/220?9", hot: true },
-  { name: "babymonster", price: 120, category: "babymonster", img: "https://picsum.photos/220?10", hot: true },
-  { name: "1", price: 1200, category: "1", img: "https://picsum.photos/220?11", hot: true },
-  { name: "2", price: 1300, category: "2r", img: "https://picsum.photos/220?12", hot: false },
-  { name: "3", price: 1400, category: "3", img: "https://picsum.photos/220?13", hot: true },
-  { name: "4", price: 1500, category: "4", img: "https://picsum.photos/220?14", hot: false }
+  { name: "dirty work", price: 350, category: "aespa", img: "https://picsum.photos/220?1", hot: false, desc: "aespa 官方限定商品" },
+  { name: "Rich Man ", price: 299, category: "aespa", img: "https://picsum.photos/220?0", hot: true, desc: "aespa 最新專輯周邊商品" },
+  { name: "dirty work2", price: 350, category: "aespa", img: "https://picsum.photos/220?2", hot: false, desc: "aespa 最新專輯周邊商品" },
+  { name: "Blue Valentine", price: 250, category: "nmixx", img: "https://picsum.photos/220?3", hot: true, desc: "nmixx 最新專輯周邊商品" },
+  { name: "Blue 2", price: 320, category: "nmixx", img: "https://picsum.photos/220?4", hot: false, desc: "nmixx 最新專輯周邊商品" },
+  { name: "xoxz", price: 120, category: "ive", img: "https://picsum.photos/220?5", hot: true, desc: "ive 最新專輯周邊商品" },
+  { name: "I am", price: 80, category: "ive", img: "https://picsum.photos/220?6", hot: false, desc: "ive 最新專輯周邊商品" },
+  { name: "jump", price: 120, category: "Blackpink", img: "https://picsum.photos/220?7", hot: true, desc: "Blackpink 最新專輯周邊商品" },
+  { name: "3am", price: 120, category: "Rose", img: "https://picsum.photos/220?8", hot: true, desc: "Rose 最新專輯周邊商品" },
+  { name: "we are", price: 120, category: "idle", img: "https://picsum.photos/220?9", hot: true, desc: "idle 最新專輯周邊商品" },
+  { name: "babymonster", price: 120, category: "babymonster", img: "https://picsum.photos/220?10", hot: true, desc: "babymonster 最新專輯周邊商品" },
+  { name: "1", price: 1200, category: "1", img: "https://picsum.photos/220?11", hot: true, desc: "1 最新專輯周邊商品" },
+  { name: "2", price: 1300, category: "2", img: "https://picsum.photos/220?12", hot: false, desc: "2 最新專輯周邊商品" },
+  { name: "3", price: 1400, category: "3", img: "https://picsum.photos/220?13", hot: true, desc: "3 最新專輯周邊商品" },
+  { name: "4", price: 1500, category: "4", img: "https://picsum.photos/220?14", hot: false, desc: "4 最新專輯周邊商品" }
 ];
 
 let cart = [];
 let total = 0;
+let currentProduct = null;
 
 // 載入所有商品
 window.onload = () => displayProducts(products);
@@ -32,7 +33,7 @@ function displayProducts(items) {
     div.className = 'product';
     div.innerHTML = `
       ${p.hot ? '<span class="tag-hot">熱銷中🔥</span>' : ''}
-      <img src="${p.img}" alt="${p.name}">
+      <img src="${p.img}" alt="${p.name}" onclick="showProduct(${products.indexOf(p)})">
       <h2>${p.name}</h2>
       <p class="price">$${p.price}</p>
       <button onclick="addToCart('${p.name}', ${p.price})">加入購物車</button>
@@ -41,24 +42,102 @@ function displayProducts(items) {
   });
 }
 
-// 加入購物車
-function addToCart(name, price) {
-  cart.push({ name, price });
-  total += price;
+
+function addToCart(name, price){
+
+  const existing =
+  cart.find(item => item.name === name);
+
+  if(existing){
+
+    existing.qty++;
+
+  }else{
+
+    cart.push({
+      name:name,
+      price:price,
+      qty:1
+    });
+
+  }
+
   updateCartDisplay();
+
 }
 
 // 更新購物車顯示
-function updateCartDisplay() {
-  document.getElementById('cart-count').textContent = cart.length;
-  const list = document.getElementById('cart-items');
-  list.innerHTML = '';
-  cart.forEach(item => {
-    const li = document.createElement('li');
-    li.textContent = `${item.name} - $${item.price}`;
+function updateCartDisplay(){
+
+  const list =
+  document.getElementById("cart-items");
+
+  list.innerHTML = "";
+
+  let grandTotal = 0;
+  let totalQty = 0;
+
+  cart.forEach((item,index)=>{
+
+    const qty = Number(item.qty || 1);
+
+    const subtotal =
+    Number(item.price) * qty;
+
+    console.log(item);
+    console.log(subtotal);
+
+    grandTotal += subtotal;
+
+    totalQty += Number(item.qty || 1);
+
+    const li =
+    document.createElement("li");
+
+    li.innerHTML = `
+      <div>
+
+        <strong>
+        ${item.name}
+        </strong>
+
+        <br>
+
+        單價：
+        $${item.price}
+
+        ×
+
+        ${item.qty || 1}
+
+        <br>
+
+        小計：
+        $${subtotal}
+
+        <br>
+
+        <button
+        onclick="removeItem(${index})">
+        刪除
+        </button>
+
+      </div>
+    `;
+
     list.appendChild(li);
+
   });
-  document.getElementById('cart-total').textContent = `總金額：$${total}`;
+
+  total = grandTotal;
+
+  document.getElementById("cart-count")
+  .textContent = totalQty;
+
+  document.getElementById("cart-total")
+  .textContent =
+  `總金額：$${grandTotal}`;
+
 }
 
 function toggleCart() {
@@ -87,4 +166,241 @@ function checkout() {
   total = 0;
   updateCartDisplay();
   toggleCart();
+}
+
+
+function showProduct(index){
+
+  currentProduct = products[index];
+
+  document.getElementById("product-qty").value = 1;
+
+  document.getElementById("modal-img").src =
+  currentProduct.img;
+
+  document.getElementById("modal-name").innerText =
+  currentProduct.name;
+
+  document.getElementById("modal-desc").innerText =
+  currentProduct.desc;
+
+  document.getElementById("modal-price").innerText =
+  "$" + currentProduct.price;
+
+  document.getElementById("product-modal")
+  .classList.remove("hidden");
+
+}
+
+function closeProduct(){
+
+  document.getElementById("product-modal")
+  .classList.add("hidden");
+
+}
+// 加入購物車
+function addModalToCart(){
+
+  const qty = Math.max(
+    1,
+    parseInt(
+      document.getElementById("product-qty").value
+    ) || 1
+  );
+
+  const existing = cart.find(
+    item => item.name === currentProduct.name
+  );
+
+  if(existing){
+
+    existing.qty += qty;
+
+  }else{
+
+    cart.push({
+      name: currentProduct.name,
+      price: currentProduct.price,
+      qty: qty
+    });
+
+  }
+
+  updateCartDisplay();
+
+  closeProduct();
+
+}
+
+function removeItem(index){
+
+  if(
+    confirm("確定移除商品？")
+  ){
+
+    cart.splice(index,1);
+
+    updateCartDisplay();
+
+  }
+
+}
+
+function showCheckout(){
+
+  if(cart.length === 0){
+
+    alert("購物車是空的");
+
+    return;
+  }
+
+  let html = "";
+
+  cart.forEach(item=>{
+
+    const subtotal =
+    item.price * item.qty;
+
+    html += `
+      <p>
+
+      ${item.name}
+
+      ×
+
+      ${item.qty}
+
+      =
+
+      $${subtotal}
+
+      </p>
+    `;
+
+  });
+
+  const shipping = 60;
+
+  html += `
+    <hr>
+
+    <p>
+    運費：$${shipping}
+    </p>
+
+    <h3>
+    總計：$${total + shipping}
+    </h3>
+  `;
+
+  document.getElementById(
+    "order-summary"
+  ).innerHTML = html;
+
+  document.getElementById(
+    "checkout-modal"
+  ).classList.remove("hidden");
+
+}
+
+function closeCheckout(){
+
+  document.getElementById(
+    "checkout-modal"
+  ).classList.add("hidden");
+
+}
+
+function submitOrder(){
+
+  let orders = JSON.parse(localStorage.getItem("orders")) || [];
+  
+  const name =
+  document.getElementById("customer-name").value;
+
+  const phone =
+  document.getElementById("customer-phone").value;
+
+  const storeType =
+  document.getElementById("store-type").value;
+
+  const storeName =
+  document.getElementById("store-name").value;
+
+  if(
+    !name ||
+    !phone ||
+    !storeType ||
+    !storeName
+  ){
+
+    alert("請完整填寫資料");
+
+    return;
+
+  }
+
+  const orderId =
+"CS" + Date.now();
+
+  localStorage.setItem(
+  "customerName",
+  name
+  );
+
+  localStorage.setItem(
+  "customerPhone",
+  phone
+  );
+
+  localStorage.setItem(
+  "storeType",
+  storeType
+  );
+
+  localStorage.setItem(
+  "storeName",
+  storeName
+  );
+  
+  localStorage.setItem(
+    "orderId",
+    orderId
+  );
+
+  localStorage.setItem(
+    "orderStatus",
+    2
+  );
+
+  cart = [];
+  total = 0;
+
+  updateCartDisplay();
+
+  window.location.href =
+  "tracking.html";
+
+const newOrder = {
+  orderId: orderId,
+  name: name,
+  phone: phone,
+  storeType: storeType,
+  storeName: storeName,
+  items: cart,
+  total: total,
+  status: 1,
+  time: new Date().toLocaleString()
+};
+
+orders.push(newOrder);
+
+localStorage.setItem(
+  "orders",
+  JSON.stringify(orders)
+);
+
+window.location.href = "tracking.html?order=" + orderId;
+
 }
