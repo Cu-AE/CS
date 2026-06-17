@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <title>賣家後台</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>🛍️ 賣家訂單管理</h1>
+</header>
+
+<div class="admin-container">
+
+    <h2>訂單資訊</h2>
+
+    <div id="order-info"></div>
+
+    <hr>
+
+    <h2>更新出貨狀態</h2>
+
+    <button onclick="updateStatus(1)">
+        訂單成立
+    </button>
+
+    <button onclick="updateStatus(2)">
+        備貨中
+    </button>
+
+    <button onclick="updateStatus(3)">
+        已出貨
+    </button>
+
+    <button onclick="updateStatus(4)">
+        配送中
+    </button>
+
+    <button onclick="updateStatus(5)">
+        已送達
+    </button>
+
+</div>
+
+<script src="admin.js"></script>
+
+</body>
+</html>
