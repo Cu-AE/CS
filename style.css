@@ -124,7 +124,7 @@ button:hover {
   position: absolute;
   top: 10px;
   left: -30px;
-  background: #71b5ec;
+  background: #5caced;
   color: white;
   padding: 5px 40px;
   font-size: 12px;
@@ -137,7 +137,7 @@ button:hover {
   top: 80px;
   right: 20px;
   background: #fff;
-  border: 2px solid #8cd4f8;
+  border: 2px solid #3cb5f1;
   border-radius: 12px;
   width: 250px;
   padding: 15px;
