@@ -1,7 +1,7 @@
 // 商品資料（多加 hot 屬性）
 const products = [
   { name: "dirty work", price: 350, category: "aespa", img: "https://picsum.photos/220?1", hot: false },
-  { name: "Rich Man ", price: 299, category: "aespa", img: "images/", hot: true },
+  { name: "Rich Man ", price: 299, category: "aespa", img: "https://picsum.photos/220?0", hot: true },
   { name: "dirty work", price: 350, category: "aespa", img: "https://picsum.photos/220?2", hot: false },
   { name: "Blue Valentine", price: 250, category: "nmixx", img: "https://picsum.photos/220?3", hot: true },
   { name: "Blue 2", price: 320, category: "nmixx", img: "https://picsum.photos/220?4", hot: false },
