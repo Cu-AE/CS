@@ -169,3 +169,245 @@ footer {
   margin-top: 30px;
   color: #333;
 }
+
+/* 商品詳細頁 */
+
+.modal {
+
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0,0,0,.6);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
+
+}
+
+.modal-content {
+
+  width: 400px;
+
+  background: white;
+
+  border-radius: 12px;
+
+  padding: 20px;
+
+  text-align: center;
+
+}
+
+.modal-content img {
+
+  width: 100%;
+
+  border-radius: 10px;
+
+}
+
+.close {
+
+  float: right;
+
+  font-size: 28px;
+
+  cursor: pointer;
+
+}
+
+.hidden {
+
+  display: none;
+
+}
+
+.qty-box{
+
+  margin:15px 0;
+
+}
+
+.qty-box input{
+
+  width:60px;
+
+  text-align:center;
+
+  padding:5px;
+
+}
+
+.modal-buttons{
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:10px;
+
+}
+
+.pocket-btn{
+
+  background:#00b894;
+
+  position:relative;
+
+  overflow:hidden;
+
+}
+
+.pocket-btn:hover{
+
+  transform:scale(1.05);
+
+}
+
+.pocket-btn::after{
+
+  content:"🛍️";
+
+  position:absolute;
+
+  right:-30px;
+
+  top:50%;
+
+  transform:translateY(-50%);
+
+  transition:.4s;
+
+}
+
+.pocket-btn:hover::after{
+
+  right:10px;
+
+}
+
+#cart-items li{
+
+  padding:10px;
+
+  margin-bottom:10px;
+
+  border-bottom:1px solid #ddd;
+
+}
+
+#cart-items button{
+
+  margin-top:5px;
+
+  background:#ff6b6b;
+
+}
+
+#cart-items button:hover{
+
+  background:#e74c3c;
+
+}
+
+.tracking-container{
+
+    max-width:900px;
+    margin:40px auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+
+}
+
+.progress-box{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:40px;
+
+}
+
+.step{
+
+    text-align:center;
+
+}
+
+.circle{
+
+    width:60px;
+    height:60px;
+
+    border-radius:50%;
+
+    background:#ccc;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+.line{
+
+    width:80px;
+    height:5px;
+
+    background:#ccc;
+
+}
+
+.step.active .circle{
+
+    background:#0ea5e9;
+
+}
+
+#status-text{
+
+    text-align:center;
+    margin-top:40px;
+
+}
+
+.admin-container{
+
+    max-width:800px;
+
+    margin:40px auto;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+
+}
+
+.admin-container button{
+
+    margin:5px;
+
+    padding:10px 15px;
+
+}
