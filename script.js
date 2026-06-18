@@ -381,7 +381,7 @@ function submitOrder(){
   phone: phone,
   storeType: storeType,
   storeName: storeName,
-  items: cart,
+  items: [...cart],
   total: total,
   status: 1,
   time: new Date().toLocaleString()
@@ -405,4 +405,3 @@ window.location.href = "tracking.html?order=" + orderId;
 
 }
 
-localStorage.removeItem("orders");
