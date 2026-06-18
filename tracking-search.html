@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <title>訂單查詢</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="search-page">
+
+    <div class="search-card">
+
+        <h1>📦 訂單查詢</h1>
+
+        <p>
+            請輸入訂單編號
+        </p>
+
+        <input
+            type="text"
+            id="order-input"
+            placeholder="例如：CS175035550001"
+        >
+
+        <br><br>
+
+        <button onclick="searchOrder()">
+            查詢訂單
+        </button>
+
+        <br><br>
+
+        <button onclick="location.href='welcome.html'">
+            返回首頁
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+function searchOrder(){
+
+    const orderId =
+    document.getElementById(
+    "order-input"
+    ).value.trim();
+
+    if(!orderId){
+
+        alert("請輸入訂單編號");
+
+        return;
+
+    }
+
+    window.location.href =
+    "tracking.html?order=" +
+    orderId;
+
+}
+
+</script>
+
+</body>
+</html>
