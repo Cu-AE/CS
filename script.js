@@ -311,7 +311,8 @@ function closeCheckout(){
   ).classList.add("hidden");
 
 }
-
+const params = new URLSearchParams(window.location.search);
+params.get("order");
 function submitOrder(){
 
   let orders = JSON.parse(localStorage.getItem("orders")) || [];
@@ -342,7 +343,7 @@ function submitOrder(){
   }
 
   const orderId =
-"CS" + Date.now();
+  "CS" + Date.now();
 
   localStorage.setItem(
   "customerName",
@@ -374,15 +375,7 @@ function submitOrder(){
     2
   );
 
-  cart = [];
-  total = 0;
-
-  updateCartDisplay();
-
-  window.location.href =
-  "tracking.html";
-
-const newOrder = {
+  const newOrder = {
   orderId: orderId,
   name: name,
   phone: phone,
@@ -392,15 +385,24 @@ const newOrder = {
   total: total,
   status: 1,
   time: new Date().toLocaleString()
-};
+  };
 
-orders.push(newOrder);
+  orders.push(newOrder);
 
-localStorage.setItem(
+  localStorage.setItem(
   "orders",
   JSON.stringify(orders)
-);
+  );
+
+  cart = [];
+  total = 0;
+
+  updateCartDisplay();
+
+  
 
 window.location.href = "tracking.html?order=" + orderId;
 
 }
+
+localStorage.removeItem("orders");
