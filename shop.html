@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <title> CS </title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1> CS store</h1>
+    <p> K-POP 周邊商品 💕</p>
+  </header>
+
+  <nav>
+    <div class="filters">
+      <select id="category-filter" onchange="filterProducts()">
+        <option value="all">全部商品</option>
+        <option value="aespa">aespa</option>
+        <option value="nmixx">nmixx</option>
+        <option value="ive">ive</option>
+        <option value="Blackpink">Blackpink</option>
+        <option value="Rose">Rose</option>
+        <option value="idle">idle</option>
+        <option value="babymonster">babymonster</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+      <input type="text" id="search-box" placeholder="🔍 搜尋商品..." onkeyup="filterProducts()">
+    </div>
+    <button id="cart-button" onclick="toggleCart()">🛒 購物車 (<span id="cart-count">0</span>)</button>
+  </nav>
+
+  <main id="product-list" class="product-list">
+    <!-- JS 動態載入商品 -->
+  </main>
+
+  <!-- 🧺 購物車 -->
+  <div id="cart-panel" class="hidden">
+    <h3>🧺 購物車內容</h3>
+    <ul id="cart-items"></ul>
+    <p id="cart-total">總金額：$0</p>
+    <button onclick="showCheckout()">
+結帳
+</button>
+  </div>
+  
+
+<!-- 商品詳細資訊視窗 -->
+
+<div id="product-modal" class="modal hidden">
+
+  <div class="modal-content">
+
+    <span class="close" onclick="closeProduct()">
+      ×
+    </span>
+
+    <img id="modal-img">
+
+    <h2 id="modal-name"></h2>
+
+    <p id="modal-desc"></p>
+
+    <p id="modal-price"></p>
+
+<div class="qty-box">
+
+  <label>購買數量：</label>
+
+  <input
+    type="number"
+    id="product-qty"
+    value="1"
+    min="1"
+  >
+
+</div>
+
+<div class="modal-buttons">
+
+  <button onclick="closeProduct()">
+    返回
+  </button>
+
+  <button
+    class="pocket-btn"
+    onclick="addModalToCart()"
+  >
+    放入口袋 👖
+  </button>
+
+</div>
+
+  </div>
+
+</div>
+
+  <footer>
+    <p>© 2025 Cu | Made with ❤️</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+<!-- 結帳視窗 -->
+
+<div id="checkout-modal" class="modal hidden">
+
+  <div class="modal-content">
+
+    <h2>📦 訂單確認</h2>
+
+    <div id="order-summary"></div>
+
+    <hr>
+
+    <input
+      type="text"
+      id="customer-name"
+      placeholder="收件人姓名"
+    >
+
+    <input
+      type="tel"
+      id="customer-phone"
+      placeholder="聯絡電話"
+    >
+
+    <select id="store-type">
+
+      <option value="">
+        請選擇超商
+      </option>
+
+      <option>7-11</option>
+      <option>全家</option>
+      <option>萊爾富</option>
+      <option>OK</option>
+
+    </select>
+
+    <input
+      type="text"
+      id="store-name"
+      placeholder="門市名稱"
+    >
+
+    <div class="modal-buttons">
+
+      <button onclick="closeCheckout()">
+        取消
+      </button>
+
+      <button onclick="submitOrder()">
+        送出訂單
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
