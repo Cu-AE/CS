@@ -43,8 +43,8 @@
     <ul id="cart-items"></ul>
     <p id="cart-total">總金額：$0</p>
     <button onclick="showCheckout()">
-結帳
-</button>
+    結帳
+    </button>
   </div>
   
 
@@ -89,7 +89,7 @@
     class="pocket-btn"
     onclick="addModalToCart()"
   >
-    放入口袋 👖
+    放入口袋 📚
   </button>
 
 </div>
@@ -110,13 +110,19 @@
 
 <div id="checkout-modal" class="modal hidden">
 
-  <div class="modal-content">
+  <div class="modal-content checkout-box">
 
-    <h2>📦 訂單確認</h2>
+    <span class="close" onclick="closeCheckout()">
+      ×
+    </span>
+
+    <h2>🧾 訂單確認</h2>
 
     <div id="order-summary"></div>
 
     <hr>
+
+    <h3>📦 收件資料</h3>
 
     <input
       type="text"
@@ -133,13 +139,24 @@
     <select id="store-type">
 
       <option value="">
-        請選擇超商
+        選擇超商
       </option>
 
-      <option>7-11</option>
-      <option>全家</option>
-      <option>萊爾富</option>
-      <option>OK</option>
+      <option>
+        7-11
+      </option>
+
+      <option>
+        全家
+      </option>
+
+      <option>
+        萊爾富
+      </option>
+
+      <option>
+        OK
+      </option>
 
     </select>
 
@@ -149,17 +166,9 @@
       placeholder="門市名稱"
     >
 
-    <div class="modal-buttons">
-
-      <button onclick="closeCheckout()">
-        取消
-      </button>
-
-      <button onclick="submitOrder()">
-        送出訂單
-      </button>
-
-    </div>
+    <button onclick="submitOrder()">
+      送出訂單
+    </button>
 
   </div>
 
