@@ -253,6 +253,7 @@ function showCheckout(){
     alert("購物車是空的");
 
     return;
+
   }
 
   let html = "";
@@ -264,17 +265,9 @@ function showCheckout(){
 
     html += `
       <p>
-
       ${item.name}
-
-      ×
-
-      ${item.qty}
-
-      =
-
-      $${subtotal}
-
+      × ${item.qty}
+      = $${subtotal}
       </p>
     `;
 
@@ -285,12 +278,10 @@ function showCheckout(){
   html += `
     <hr>
 
-    <p>
-    運費：$${shipping}
-    </p>
+    <p>運費：$${shipping}</p>
 
     <h3>
-    總計：$${total + shipping}
+      總計：$${total + shipping}
     </h3>
   `;
 
@@ -301,7 +292,6 @@ function showCheckout(){
   document.getElementById(
     "checkout-modal"
   ).classList.remove("hidden");
-
 }
 
 function closeCheckout(){
@@ -405,3 +395,10 @@ window.location.href = "tracking.html?order=" + orderId;
 
 }
 
+function closeCheckout(){
+
+  document
+  .getElementById("checkout-modal")
+  .classList.add("hidden");
+
+}
