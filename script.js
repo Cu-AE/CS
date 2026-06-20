@@ -1,12 +1,12 @@
 // 商品資料（多加 hot 屬性）
 const products = [
-  { name: "dirty work", price: 350, category: "aespa", img: "https://picsum.photos/220?1", hot: false, desc: "aespa 官方限定商品" },
-  { name: "Rich Man ", price: 299, category: "aespa", img: "https://picsum.photos/220?0", hot: true, desc: "aespa 最新專輯周邊商品" },
-  { name: "dirty work2", price: 350, category: "aespa", img: "https://picsum.photos/220?2", hot: false, desc: "aespa 最新專輯周邊商品" },
-  { name: "Blue Valentine", price: 250, category: "nmixx", img: "https://picsum.photos/220?3", hot: true, desc: "nmixx 最新專輯周邊商品" },
-  { name: "Blue 2", price: 320, category: "nmixx", img: "https://picsum.photos/220?4", hot: false, desc: "nmixx 最新專輯周邊商品" },
-  { name: "xoxz", price: 120, category: "ive", img: "https://picsum.photos/220?5", hot: true, desc: "ive 最新專輯周邊商品" },
-  { name: "I am", price: 80, category: "ive", img: "https://picsum.photos/220?6", hot: false, desc: "ive 最新專輯周邊商品" },
+  { name: "dirty work", price: 350, category: "aespa", img: "https://picsum.photos/220?1", hot: false, desc: "aespa 官方限定商品",rating:4.8 },
+  { name: "Rich Man ", price: 299, category: "aespa", img: "https://picsum.photos/220?0", hot: true, desc: "aespa 最新專輯周邊商品" ,rating:5},
+  { name: "dirty work2", price: 350, category: "aespa", img: "https://picsum.photos/220?2", hot: false, desc: "aespa 最新專輯周邊商品" ,rating:4.9},
+  { name: "Blue Valentine", price: 250, category: "nmixx", img: "https://picsum.photos/220?3", hot: true, desc: "nmixx 最新專輯周邊商品",rating:3.8 },
+  { name: "Blue 2", price: 320, category: "nmixx", img: "https://picsum.photos/220?4", hot: false, desc: "nmixx 最新專輯周邊商品",rating:4.8},
+  { name: "xoxz", price: 120, category: "ive", img: "https://picsum.photos/220?5", hot: true, desc: "ive 最新專輯周邊商品",rating:4.8 },
+  { name: "I am", price: 80, category: "ive", img: "https://picsum.photos/220?6", hot: false, desc: "ive 最新專輯周邊商品" ,rating:4.8},
   { name: "jump", price: 120, category: "Blackpink", img: "https://picsum.photos/220?7", hot: true, desc: "Blackpink 最新專輯周邊商品" },
   { name: "3am", price: 120, category: "Rose", img: "https://picsum.photos/220?8", hot: true, desc: "Rose 最新專輯周邊商品" },
   { name: "we are", price: 120, category: "idle", img: "https://picsum.photos/220?9", hot: true, desc: "idle 最新專輯周邊商品" },
@@ -36,8 +36,7 @@ function displayProducts(items) {
       <img src="${p.img}" alt="${p.name}" onclick="showProduct(${products.indexOf(p)})">
       <h2>${p.name}</h2>
       <p class="price">$${p.price}</p>
-      <button onclick="addToCart('${p.name}', ${p.price})">加入購物車</button>
-    `;
+      <button onclick="addToCart('${p.name}', ${p.price})">加入購物車</button>`;
     container.appendChild(div);
   });
 }
@@ -49,21 +48,29 @@ function addToCart(name, price){
   cart.find(item => item.name === name);
 
   if(existing){
-
     existing.qty++;
-
-  }else{
-
+  }
+  else{
     cart.push({
       name:name,
       price:price,
       qty:1
     });
-
   }
 
   updateCartDisplay();
 
+  document.getElementById("cart-button")
+  .animate(
+    [
+      {transform:"scale(1)"},
+      {transform:"scale(1.2)"},
+      {transform:"scale(1)"}
+    ],
+    {
+      duration:300
+    }
+  );
 }
 
 // 更新購物車顯示
@@ -78,22 +85,15 @@ function updateCartDisplay(){
   let totalQty = 0;
 
   cart.forEach((item,index)=>{
-
     const qty = Number(item.qty || 1);
-
-    const subtotal =
-    Number(item.price) * qty;
+    const subtotal = Number(item.price) * qty;
 
     console.log(item);
     console.log(subtotal);
-
     grandTotal += subtotal;
-
     totalQty += Number(item.qty || 1);
 
-    const li =
-    document.createElement("li");
-
+    const li = document.createElement("li");
     li.innerHTML = `
       <div>
 
@@ -165,90 +165,55 @@ function checkout() {
   toggleCart();
 }
 
-
 function showProduct(index){
-
   currentProduct = products[index];
-
-  document.getElementById("modal-img").src =
-  currentProduct.img;
-
-  document.getElementById("modal-name").innerText =
-  currentProduct.name;
-
-  document.getElementById("modal-desc").innerText =
-  currentProduct.desc;
-
-  document.getElementById("modal-price").innerText =
-  "$" + currentProduct.price;
-
-  document.getElementById("product-modal")
-  .classList.add("show");
-
+  document.getElementById("modal-img").src = currentProduct.img;
+  document.getElementById("modal-name").innerText = currentProduct.name;
+  document.getElementById("modal-desc").innerText = currentProduct.desc;
+  document.getElementById("modal-price").innerText = "$" + currentProduct.price;
+  document.getElementById("product-modal").classList.add("show");
 }
 
 function closeProduct(){
-
   document.getElementById("product-modal")
   .classList.remove("show");
-
 }
 
 // 加入購物車
 function addModalToCart(){
-
-  const qty = Math.max(
-    1,
-    parseInt(
-      document.getElementById("product-qty").value
-    ) || 1
-  );
-
-  const existing = cart.find(
-    item => item.name === currentProduct.name
-  );
+  const qty = Math.max(1,parseInt(document.getElementById("product-qty").value) || 1);
+  const existing = cart.find(item => item.name === currentProduct.name);
 
   if(existing){
-
     existing.qty += qty;
-
-  }else{
-
+  }
+  else{
     cart.push({
       name: currentProduct.name,
       price: currentProduct.price,
       qty: qty
     });
-
   }
 
   updateCartDisplay();
-
   closeProduct();
-
 }
 
 function removeItem(index){
-
   if(
     confirm("確定移除商品？")
   ){
-
     cart.splice(index,1);
 
     updateCartDisplay();
-
   }
-
 }
 
 function showCheckout(){
-
   if(cart.length === 0){
 
     alert("購物車是空的");
     return;
-
   }
 
   let html = "";
@@ -264,7 +229,6 @@ function showCheckout(){
       $${item.price * item.qty}
       </p>
     `;
-
   });
 
   const shipping = 60;
@@ -276,38 +240,22 @@ function showCheckout(){
     <h2>應付金額：$${total + shipping}</h2>
   `;
 
-  document.getElementById("order-summary").innerHTML =
-  html;
-
-  document.getElementById("checkout-modal")
-  .classList.add("show");
-
+  document.getElementById("order-summary").innerHTML = html;
+  document.getElementById("checkout-modal").classList.add("show");
 }
 
 function closeCheckout(){
-
-  document.getElementById("checkout-modal")
-  .classList.remove("show");
-
+  document.getElementById("checkout-modal").classList.remove("show");
 }
 
 const params = new URLSearchParams(window.location.search);
 params.get("order");
 function submitOrder(){
-
   let orders = JSON.parse(localStorage.getItem("orders")) || [];
-  
-  const name =
-  document.getElementById("customer-name").value;
-
-  const phone =
-  document.getElementById("customer-phone").value;
-
-  const storeType =
-  document.getElementById("store-type").value;
-
-  const storeName =
-  document.getElementById("store-name").value;
+  const name = document.getElementById("customer-name").value;
+  const phone = document.getElementById("customer-phone").value;
+  const storeType = document.getElementById("store-type").value;
+  const storeName = document.getElementById("store-name").value;
 
   if(
     !name ||
@@ -315,45 +263,18 @@ function submitOrder(){
     !storeType ||
     !storeName
   ){
-
     alert("請完整填寫資料");
-
     return;
-
   }
 
-  const orderId =
-  "CS" + Date.now();
+  const orderId = "CS" + Date.now();
 
-  localStorage.setItem(
-  "customerName",
-  name
-  );
-
-  localStorage.setItem(
-  "customerPhone",
-  phone
-  );
-
-  localStorage.setItem(
-  "storeType",
-  storeType
-  );
-
-  localStorage.setItem(
-  "storeName",
-  storeName
-  );
-  
-  localStorage.setItem(
-    "orderId",
-    orderId
-  );
-
-  localStorage.setItem(
-    "orderStatus",
-    2
-  );
+  localStorage.setItem( "customerName",name);
+  localStorage.setItem( "customerPhone",phone);
+  localStorage.setItem( "storeType",storeType);
+  localStorage.setItem( "storeName",storeName);
+  localStorage.setItem( "orderId",orderId);
+  localStorage.setItem( "orderStatus",2);
 
   const shipping = 60;
   const newOrder = {
@@ -362,23 +283,18 @@ function submitOrder(){
   phone: phone,
   storeType: storeType,
   storeName: storeName,
-  items: JSON.parse(
-    JSON.stringify(cart)
-),
+  items: JSON.parse( JSON.stringify(cart)),
   subtotal: total,
   shipping: shipping,
   total: total + 60,
   status: 1,
   time: new Date().toLocaleString()
-
 };
 
   orders.push(newOrder);
-
-  localStorage.setItem(
-  "orders",
-  JSON.stringify(orders)
-  );
+  localStorage.setItem
+  ("orders",
+  JSON.stringify(orders));
 
   cart = [];
   total = 0;
@@ -386,33 +302,18 @@ function submitOrder(){
   updateCartDisplay();
 
 window.location.href = "tracking.html?order=" + orderId;
-
 }
 
 function plusQty(){
-
-    const input =
-    document.getElementById(
-    "product-qty"
-    );
-
-    input.value =
-    Number(input.value) + 1;
-
+  const input =
+  document.getElementById( "product-qty");
+  input.value = Number(input.value) + 1;
 }
 
 function minusQty(){
-
-    const input =
-    document.getElementById(
-    "product-qty"
-    );
+    const input = document.getElementById( "product-qty");
 
     if(input.value > 1){
-
-        input.value =
-        Number(input.value) - 1;
-
+      input.value = Number(input.value) - 1;
     }
-
 }
