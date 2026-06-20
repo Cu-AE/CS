@@ -63,27 +63,23 @@ nav {
   padding: 30px;
 }
 
-.product {
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  width: 220px;
-  text-align: center;
-  padding: 15px;
-  transition: transform 0.25s, box-shadow 0.3s;
-  position: relative;
-  overflow: hidden;
+.product{
+  background:#fff;
+  border-radius:18px;
+  overflow:hidden;
+  transition:.3s;
+  cursor:pointer;
 }
 
-.product:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+.product:hover{
+  transform:translateY(-8px);
+  box-shadow:0 15px 35px rgba(0,0,0,.15);
 }
 
-.product img {
-  width: 100%;
-  border-radius: 10px;
-  transition: transform 0.4s, filter 0.3s;
+.product img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
 }
 
 .product:hover img {
@@ -100,6 +96,19 @@ nav {
   color: #13b297;
   font-weight: bold;
   font-size: 16px;
+}
+
+.product h2{
+  height:50px;
+  font-size:18px;
+}
+
+.product button{
+  width:100%;
+  margin-top:10px;
+  padding:12px;
+  font-weight:bold;
+  border-radius:10px;
 }
 
 button {
@@ -218,8 +227,8 @@ footer {
 }
 
 .rating{
-    color:#f39c12;
-    margin:8px 0;
+  color:#f59e0b;
+  font-weight:bold;
 }
 
 #modal-price{
@@ -579,4 +588,35 @@ footer{
 
 .modal.show{
   display:flex;
+}
+
+.hero-banner{
+  height:110px;
+
+  background:
+  linear-gradient(
+    rgba(0,0,0,.3),
+    rgba(0,0,0,.3)
+  ),
+  url("https://picsum.photos/1920/800");
+
+  background-size:cover;
+  background-position:center;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.hero-content{
+  text-align:center;
+  color:white;
+}
+
+.hero-content h1{
+  font-size:500px;
+}
+
+.hero-content p{
+  font-size:20px;
 }
