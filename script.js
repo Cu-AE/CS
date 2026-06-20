@@ -117,11 +117,8 @@ function updateCartDisplay(){
 
         <br>
 
-        <button
-        onclick="removeItem(${index})">
-        刪除
-        </button>
-
+        <button onclick="removeItem(${index})"> 刪除 </button>
+      
       </div>
     `;
 
@@ -173,8 +170,6 @@ function showProduct(index){
 
   currentProduct = products[index];
 
-  document.getElementById("product-qty").value = 1;
-
   document.getElementById("modal-img").src =
   currentProduct.img;
 
@@ -188,16 +183,17 @@ function showProduct(index){
   "$" + currentProduct.price;
 
   document.getElementById("product-modal")
-  .classList.remove("hidden");
+  .classList.add("show");
 
 }
 
 function closeProduct(){
 
   document.getElementById("product-modal")
-  .classList.add("hidden");
+  .classList.remove("show");
 
 }
+
 // 加入購物車
 function addModalToCart(){
 
@@ -251,7 +247,6 @@ function showCheckout(){
   if(cart.length === 0){
 
     alert("購物車是空的");
-
     return;
 
   }
@@ -260,14 +255,13 @@ function showCheckout(){
 
   cart.forEach(item=>{
 
-    const subtotal =
-    item.price * item.qty;
-
     html += `
       <p>
       ${item.name}
-      × ${item.qty}
-      = $${subtotal}
+      ×
+      ${item.qty}
+      =
+      $${item.price * item.qty}
       </p>
     `;
 
@@ -277,30 +271,26 @@ function showCheckout(){
 
   html += `
     <hr>
-
+    <p>商品金額：$${total}</p>
     <p>運費：$${shipping}</p>
-
-    <h3>
-      總計：$${total + shipping}
-    </h3>
+    <h2>應付金額：$${total + shipping}</h2>
   `;
 
-  document.getElementById(
-    "order-summary"
-  ).innerHTML = html;
+  document.getElementById("order-summary").innerHTML =
+  html;
 
-  document.getElementById(
-    "checkout-modal"
-  ).classList.remove("hidden");
+  document.getElementById("checkout-modal")
+  .classList.add("show");
+
 }
 
 function closeCheckout(){
 
-  document.getElementById(
-    "checkout-modal"
-  ).classList.add("hidden");
+  document.getElementById("checkout-modal")
+  .classList.remove("show");
 
 }
+
 const params = new URLSearchParams(window.location.search);
 params.get("order");
 function submitOrder(){
@@ -365,17 +355,23 @@ function submitOrder(){
     2
   );
 
+  const shipping = 60;
   const newOrder = {
   orderId: orderId,
   name: name,
   phone: phone,
   storeType: storeType,
   storeName: storeName,
-  items: [...cart],
-  total: total,
+  items: JSON.parse(
+    JSON.stringify(cart)
+),
+  subtotal: total,
+  shipping: shipping,
+  total: total + 60,
   status: 1,
   time: new Date().toLocaleString()
-  };
+
+};
 
   orders.push(newOrder);
 
@@ -389,16 +385,34 @@ function submitOrder(){
 
   updateCartDisplay();
 
-  
-
 window.location.href = "tracking.html?order=" + orderId;
 
 }
 
-function closeCheckout(){
+function plusQty(){
 
-  document
-  .getElementById("checkout-modal")
-  .classList.add("hidden");
+    const input =
+    document.getElementById(
+    "product-qty"
+    );
+
+    input.value =
+    Number(input.value) + 1;
+
+}
+
+function minusQty(){
+
+    const input =
+    document.getElementById(
+    "product-qty"
+    );
+
+    if(input.value > 1){
+
+        input.value =
+        Number(input.value) - 1;
+
+    }
 
 }
