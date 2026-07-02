@@ -1,0 +1,80 @@
+<!-- 會員管理 -->
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>會員登入</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="login-box">
+
+<h1>CS STORE</h1>
+
+<input
+type="text"
+id="username"
+placeholder="帳號"
+>
+
+<input
+type="password"
+id="password"
+placeholder="密碼"
+>
+
+<button onclick="login()">
+登入
+</button>
+
+</div>
+
+<script>
+
+function login(){
+
+    const username =
+    document.getElementById("username").value;
+
+    const password =
+    document.getElementById("password").value;
+
+    if(
+        username==="admin" &&
+        password==="1234"
+    ){
+
+        localStorage.setItem(
+            "member",
+            username
+        );
+
+        localStorage.setItem(
+            "role",
+            "admin"
+        );
+
+        location.href="shop.html";
+
+        return;
+    }
+
+    localStorage.setItem(
+        "member",
+        username
+    );
+
+    localStorage.setItem(
+        "role",
+        "user"
+    );
+
+    location.href="shop.html";
+
+}
+
+</script>
+
+</body>
+</html>
