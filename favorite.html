@@ -1,0 +1,37 @@
+
+<!-- 收藏 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>我的收藏</title>
+</head>
+<body>
+
+<h1>❤️ 我的收藏</h1>
+
+<div id="favorite-list"></div>
+
+<script>
+
+const favorites =
+JSON.parse(
+localStorage.getItem("favorites")
+) || [];
+
+let html="";
+
+favorites.forEach(item=>{
+
+ html += `<p>${item}</p>`;
+
+});
+
+document.getElementById(
+"favorite-list"
+).innerHTML=html;
+
+</script>
+
+</body>
+</html>
