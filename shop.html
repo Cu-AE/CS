@@ -2,185 +2,435 @@
 <html lang="zh-TW">
 
 <head>
-  <meta charset="UTF-8">
-  <title> CS </title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS STORE</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/banner.css">
+    <link rel="stylesheet" href="css/product.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
+
 <body>
-  <header>
-    <h1> CS store</h1>
-    <p> K-POP 周邊商品 💕</p>
-  </header>
 
-  <nav>
+    <!-- Header -->
+    <header>
 
-    <section class="hero-banner">
+        <h1>CS STORE</h1>
 
-    <div class="hero-content">
+        <p>K-POP 官方周邊商品</p>
 
-      <h2>CS K-POP STORE</h2>
-      <p>最新韓團專輯・小卡・周邊</p>
-    </div>
+    </header>
+
+    <!-- 導覽列 -->
+    <nav>
+
+        <div class="nav-left">
+
+            <h2 class="logo">
+                CS STORE
+            </h2>
+
+        </div>
+
+        <div class="nav-center">
+
+            <input
+                type="text"
+                id="search-box"
+                placeholder="🔍 搜尋商品..."
+                onkeyup="filterProducts()">
+
+        </div>
+
+        <div class="nav-right">
+
+            <button onclick="location.href='favorite.html'">
+                ❤️ 收藏
+            </button>
+
+            <div id="member-area"></div>
+
+            <button
+                id="cart-button"
+                onclick="toggleCart()">
+
+                🛒
+                <span id="cart-count">0</span>
+
+            </button>
+
+        </div>
+
+    </nav>
+
+    <!-- 分類列 -->
+    <section class="category-bar">
+
+        <select
+            id="category-filter"
+            onchange="filterProducts()">
+
+            <option value="all">全部商品</option>
+            <option value="aespa">aespa</option>
+            <option value="nmixx">NMIXX</option>
+            <option value="ive">IVE</option>
+            <option value="Blackpink">BLACKPINK</option>
+            <option value="Rose">Rosé</option>
+            <option value="idle">(G)I-DLE</option>
+            <option value="babymonster">BABYMONSTER</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+
+        </select>
+
     </section>
+
+    <!-- Hero Banner -->
+    <section class="banner">
+
+    <div class="slides">
+
+        <div class="slide active">
+
+    <img src="https://picsum.photos/1200/350?random=11">
+
+    <div class="banner-text">
+
+        <h1>NEW ARRIVAL</h1>
+
+        <h2>aespa Dirty Work</h2>
+
+        <p>最新官方周邊商品上市</p>
+
+        <button onclick="window.scrollTo(0,420)">
+            立即購買 →
+        </button>
+
+    </div>
+
+</div>
+
+        <div class="slide">
+
+    <img src="https://picsum.photos/1200/350?random=12">
+
+    <div class="banner-text">
+
+        <h1>NMIXX</h1>
+
+        <h2>Blue Valentine</h2>
+
+        <p>限量預購中</p>
+
+        <button onclick="window.scrollTo(0,420)">
+            查看商品 →
+        </button>
+
+    </div>
+
+</div>
+
+        <div class="slide">
+
+    <img src="https://picsum.photos/1200/350?random=13">
+
+    <div class="banner-text">
+
+        <h1>IVE</h1>
+
+        <h2>I AM</h2>
+
+        <p>全館新品上市</p>
+
+        <button onclick="window.scrollTo(0,420)">
+            立即選購 →
+        </button>
+
+    </div>
+
+</div>
+
+    </div>
+
+    <button class="prev" onclick="prevSlide()">
+        ❮
+    </button>
+
+    <button class="next" onclick="nextSlide()">
+        ❯
+    </button>
     
-    <div class = "Member">
+    <div class="dots">
+
+    <span class="dot active" onclick="goSlide(0)"></span>
+
+    <span class="dot" onclick="goSlide(1)"></span>
+
+    <span class="dot" onclick="goSlide(2)"></span>
+
+</div>
+</section>
+
+    <!-- 商品列表 -->
+
+    <main
+        id="product-list"
+        class="product-list">
+
+    </main>
+
+    <!-- 購物車 -->
+    <div id="cart-mask" onclick="toggleCart()"></div>
+    <div
+        id="cart-panel">
+
+        <h2>
+            🛒 我的購物車
+        </h2>
+
+        <ul id="cart-items"></ul>
+
+        <h3 id="cart-total">
+            總金額：$0
+        </h3>
+
+        <button onclick="showCheckout()">
+            前往結帳
+        </button>
 
     </div>
 
-    <div class="filters">
-      <select id="category-filter" onchange="filterProducts()">
-        <option value="all">全部商品</option>
-        <option value="aespa">aespa</option>
-        <option value="nmixx">nmixx</option>
-        <option value="ive">ive</option>
-        <option value="Blackpink">Blackpink</option>
-        <option value="Rose">Rose</option>
-        <option value="idle">idle</option>
-        <option value="babymonster">babymonster</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-      </select>
-      <input type="text" id="search-box" placeholder="🔍 搜尋商品..." onkeyup="filterProducts()">
-    </div>
-    <button id="cart-button" onclick="toggleCart()">🛒 購物車 (<span id="cart-count">0</span>)</button>
-  </nav>
+    <!-- ================= 商品詳細 Modal ================= -->
 
-  <main id="product-list" class="product-list">
-    <!-- JS 動態載入商品 -->
-  </main>
+<div id="product-modal" class="modal">
 
-  <!-- 🧺 購物車 -->
-  <div id="cart-panel" class="hidden">
-    <h3>🧺 購物車內容</h3>
-    <ul id="cart-items"></ul>
-    <p id="cart-total">總金額：$0</p>
-    <button onclick="showCheckout()">
-結帳
-</button>
-  </div>
-  
-<!-- 商品詳細資訊視窗 -->
+    <div class="modal-content">
 
-<div id="product-modal" class="modal hidden">
+        <!-- 關閉 -->
 
-  <div class="modal-content">
+        <span
+            class="close"
+            onclick="closeProduct()">
+            &times;
+        </span>
 
-    <span class="close" onclick="closeProduct()">
-      ×
-    </span>
+        <!-- 左邊圖片 -->
 
-    <img id="modal-img">
+        <div class="modal-left">
 
-    <h2 id="modal-name"></h2>
+    <img
+        id="modal-img"
+        src=""
+        alt="商品圖片">
 
-    <p id="modal-desc"></p>
+    <div class="thumbnail-list">
 
-    <p id="modal-price"></p>
+        <img
+            id="thumb0"
+            class="thumb active"
+            onclick="changeImage(0)">
 
-<div class="qty-box">
+        <img
+            id="thumb1"
+            class="thumb"
+            onclick="changeImage(1)">
 
-  <label>購買數量：</label>
+        <img
+            id="thumb2"
+            class="thumb"
+            onclick="changeImage(2)">
 
-  <input
-    type="number"
-    id="product-qty"
-    value="1"
-    min="1"
-  >
-
-</div>
-
-<p class="rating">
-⭐⭐⭐⭐⭐ (4.9)
-</p>
-
-<div class="modal-buttons">
-
-  <button onclick="closeProduct()">
-    返回
-  </button>
-
-  <button
-    class="pocket-btn"
-    onclick="addModalToCart()"
-  >
-    放入口袋 📚
-  </button>
-
-</div>
-
-  </div>
-
-</div>
-
-  <footer>
-    <p>© 2025 Cu | Made with ❤️</p>
-  </footer>
-
-
-
-<!-- 結帳視窗 -->
-
-<div id="checkout-modal" class="modal hidden">
-
-  <div class="modal-content">
-
-    <h2>📦 訂單確認</h2>
-
-    <div id="order-summary"></div>
-
-    <hr>
-
-    <input
-      type="text"
-      id="customer-name"
-      placeholder="收件人姓名"
-    >
-
-    <input
-      type="tel"
-      id="customer-phone"
-      placeholder="聯絡電話"
-    >
-
-    <select id="store-type">
-
-      <option value="">
-        請選擇超商
-      </option>
-
-      <option>7-11</option>
-      <option>全家</option>
-      <option>萊爾富</option>
-      <option>OK</option>
-
-    </select>
-
-    <input
-      type="text"
-      id="store-name"
-      placeholder="門市名稱"
-    >
-
-    <div class="modal-buttons">
-
-      <button onclick="closeCheckout()">
-        取消
-      </button>
-
-      <button onclick="submitOrder()">
-        送出訂單
-      </button>
+        <img
+            id="thumb3"
+            class="thumb"
+            onclick="changeImage(3)">
 
     </div>
 
-  </div>
+</div>
+
+        <!-- 右邊資訊 -->
+
+        <div class="modal-right">
+
+            <p
+                class="category"
+                id="modal-category">
+            </p>
+
+            <h2 id="modal-name">
+            </h2>
+
+            <p
+                class="rating"
+                id="modal-rating">
+            </p>
+
+            <p id="modal-price">
+            </p>
+
+            <p id="modal-desc">
+            </p>
+
+            <hr>
+
+            <!-- 商品資訊 -->
+
+            <div class="product-info-list">
+
+                <div class="info-row">
+                    <span>品牌</span>
+                    <span>CS STORE</span>
+                </div>
+
+                <div class="info-row">
+                    <span>商品狀態</span>
+                    <span>現貨</span>
+                </div>
+
+                <div class="info-row">
+                    <span>配送方式</span>
+                    <span>超商取貨</span>
+                </div>
+
+            </div>
+
+            <!-- 數量 -->
+
+            <div class="qty-box">
+
+                <label>購買數量</label>
+
+                <div class="qty-control">
+
+                    <button
+                        onclick="minusQty()">
+                        −
+                    </button>
+
+                    <input
+                        id="product-qty"
+                        type="number"
+                        value="1"
+                        min="1">
+
+                    <button
+                        onclick="plusQty()">
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- 按鈕 -->
+
+            <div class="modal-buttons">
+
+                <button
+                    onclick="closeProduct()">
+
+                    返回
+
+                </button>
+
+                <button
+                    class="pocket-btn"
+                    onclick="addModalToCart()">
+
+                    🛒 加入購物車
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
-  <script src="script.js"></script>
+    <!-- 結帳 -->
 
-</body>
+    <div
+        id="checkout-modal"
+        class="modal hidden">
+
+        <div class="modal-content">
+
+            <h2>
+
+                📦 訂單確認
+
+            </h2>
+
+            <div id="order-summary"></div>
+
+            <hr>
+
+            <input
+                id="customer-name"
+                type="text"
+                placeholder="收件人姓名">
+
+            <input
+                id="customer-phone"
+                type="tel"
+                placeholder="聯絡電話">
+
+            <select id="store-type">
+
+                <option value="">
+                    選擇超商
+                </option>
+
+                <option>7-ELEVEN</option>
+                <option>全家</option>
+                <option>萊爾富</option>
+                <option>OK</option>
+
+            </select>
+
+            <input
+                id="store-name"
+                type="text"
+                placeholder="門市名稱">
+
+            <div class="modal-buttons">
+
+                <button onclick="closeCheckout()">
+                    取消
+                </button>
+
+                <button onclick="submitOrder()">
+                    送出訂單
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+
+    <footer>
+
+        © 2025 CS STORE | Made with ❤️
+
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/member.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/script.js"></script>
+
+  </body>
 </html>
