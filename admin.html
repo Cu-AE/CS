@@ -1,3 +1,4 @@
+<!-- 管理後台 -->
 <!DOCTYPE html>
 <html lang="zh-TW">
 
@@ -13,10 +14,21 @@
     <h1>🛍️ 訂單管理</h1>
 </header>
 
+<button
+onclick="deleteOrder('${order.orderId}')"
+>🗑️刪除
+</button>
+
 <div class="admin-container">
 
+    <div id="dashboard"></div>
     <h2>訂單資訊</h2>
-
+    <input
+    type="text"
+    id="searchOrder"
+    placeholder="搜尋訂單編號"
+    onkeyup="renderOrders()"
+    >
     <div id="order-info"></div>
 
     <hr>
@@ -49,3 +61,4 @@
 
 </body>
 </html>
+
