@@ -1,0 +1,489 @@
+/*==============================
+        商品 Modal
+==============================*/
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+    padding:30px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+/*==============================
+      Modal 主視窗
+==============================*/
+
+.modal-content{
+
+    width:1100px;
+    max-width:95vw;
+    max-height:92vh;
+
+    background:#fff;
+
+    border-radius:24px;
+
+    display:flex;
+
+    overflow:hidden;
+
+    position:relative;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.25);
+
+}
+
+/*==============================
+        關閉按鈕
+==============================*/
+
+.close{
+
+    position:absolute;
+
+    right:22px;
+
+    top:18px;
+
+    font-size:36px;
+
+    cursor:pointer;
+
+    color:#777;
+
+    z-index:10;
+
+    transition:.25s;
+
+}
+
+.close:hover{
+
+    color:#ff4d6d;
+
+    transform:rotate(90deg);
+
+}
+
+/*==============================
+        左邊圖片
+==============================*/
+
+.modal-left{
+
+    width:460px;
+
+    padding:35px;
+
+    border-right:1px solid #eee;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+#modal-img{
+
+    width:100%;
+
+    aspect-ratio:1/1;
+
+    object-fit:cover;
+
+    border-radius:18px;
+
+    border:1px solid #eee;
+
+    background:#fafafa;
+
+}
+
+/*==============================
+        縮圖
+==============================*/
+
+.thumbnail-list{
+
+    display:flex;
+
+    justify-content:flex-start;
+
+    gap:12px;
+
+    margin-top:18px;
+
+    flex-wrap:wrap;
+
+}
+
+.thumb{
+
+    width:82px;
+
+    height:82px;
+
+    object-fit:cover;
+
+    border-radius:12px;
+
+    border:2px solid #ddd;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    background:white;
+
+}
+
+.thumb:hover{
+
+    border-color:#00a8e8;
+
+    transform:translateY(-3px);
+
+}
+
+.thumb.active{
+
+    border:2px solid #00a8e8;
+
+}
+
+/*==============================
+      右邊資訊
+==============================*/
+
+.modal-right{
+
+    flex:1;
+
+    padding:35px;
+
+    overflow-y:auto;
+
+}
+
+.category{
+
+    color:#00a8e8;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+    margin-bottom:8px;
+
+}
+
+#modal-name{
+
+    font-size:32px;
+
+    margin:0;
+
+    line-height:1.4;
+
+}
+
+#modal-rating{
+
+    color:#f59e0b;
+
+    margin:18px 0;
+
+    font-size:18px;
+
+}
+
+#modal-price{
+
+    color:#ff4d4f;
+
+    font-size:40px;
+
+    font-weight:bold;
+
+    margin:20px 0;
+
+}
+
+#modal-desc{
+
+    color:#666;
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+
+}
+
+/*==============================
+      商品資訊
+==============================*/
+
+.product-info-list{
+
+    background:#fafafa;
+
+    border-radius:16px;
+
+    padding:18px;
+
+    margin:25px 0;
+
+}
+
+.info-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:12px 0;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.info-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.info-row span:first-child{
+
+    color:#888;
+
+}
+
+.info-row span:last-child{
+
+    font-weight:bold;
+
+}
+
+/*==============================
+      數量
+==============================*/
+
+.qty-box{
+
+    margin-top:25px;
+
+}
+
+.qty-box label{
+
+    display:block;
+
+    margin-bottom:10px;
+
+    font-weight:bold;
+
+}
+
+.qty-box input{
+
+    width:90px;
+
+    height:42px;
+
+    text-align:center;
+
+    font-size:18px;
+
+    border-radius:10px;
+
+    border:1px solid #ccc;
+
+}
+
+/*==============================
+      按鈕
+==============================*/
+
+.modal-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:35px;
+
+}
+
+.modal-buttons button{
+
+    flex:1;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.modal-buttons button:first-child{
+
+    background:#f2f2f2;
+
+    color:#333;
+
+}
+
+.modal-buttons button:first-child:hover{
+
+    background:#ddd;
+
+}
+
+.pocket-btn{
+
+    background:#00a8e8;
+
+    color:white;
+
+}
+
+.pocket-btn:hover{
+
+    background:#0088bf;
+
+}
+
+/*==============================
+      手機版
+==============================*/
+
+@media(max-width:900px){
+
+.modal-content{
+
+    width:95%;
+
+    flex-direction:column;
+
+    max-height:95vh;
+
+}
+
+.modal-left{
+
+    width:auto;
+
+    border-right:none;
+
+    border-bottom:1px solid #eee;
+
+}
+
+#modal-img{
+
+    width:100%;
+
+}
+
+.modal-right{
+
+    padding:25px;
+
+}
+
+.thumbnail-list{
+
+    justify-content:center;
+
+}
+
+.modal-buttons{
+
+    flex-direction:column;
+
+}
+
+
+.thumbnail-list{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:15px;
+
+    width:100%;
+
+}
+
+.thumb{
+
+    width:80px;
+
+    height:80px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+    border:2px solid #ddd;
+
+    cursor:pointer;
+
+}
+
+.thumb.active{
+
+    border-color:#00a8e8;
+
+}
+
+.thumb:hover{
+
+    transform:translateY(-4px);
+
+    border-color:#00a8e8;
+
+}
+
+.thumb.active{
+
+    border:2px solid #00a8e8;
+
+}
+
+.thumb:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.thumb.active{
+
+    border-color:#00a8e8;
+
+    transform:scale(1.08);
+
+}
+
+.thumb.active{
+    border-color:#0ea5e9;
+}}
