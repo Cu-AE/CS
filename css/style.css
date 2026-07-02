@@ -1,0 +1,91 @@
+/* ===============================
+   CS STORE
+   Main Style
+=============================== */
+
+@import url("layout.css");
+@import url("banner.css");
+@import url("product.css");
+@import url("cart.css");
+@import url("modal.css");
+@import url("tracking.css");
+@import url("admin.css");
+
+/* ===========================
+   商品圖片 Hover Overlay
+=========================== */
+
+.product-image{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.product-overlay{
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,.35);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    opacity:0;
+
+    transition:.35s;
+
+}
+
+.product:hover .product-overlay{
+
+    opacity:1;
+
+}
+
+.quick-view{
+
+    background:white;
+
+    color:#333;
+
+    border:none;
+
+    padding:12px 24px;
+
+    border-radius:30px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transform:translateY(20px);
+
+    transition:.3s;
+
+}
+
+.product:hover .quick-view{
+
+    transform:translateY(0);
+
+}
+
+.quick-view:hover{
+
+    background:#00a8e8;
+
+    color:white;
+
+}
+
