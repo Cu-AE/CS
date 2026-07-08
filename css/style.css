@@ -1,91 +1,39 @@
-/* ===============================
-   CS STORE
-   Main Style
-=============================== */
+/* ========= CS STORE ========= */
 
 @import url("layout.css");
 @import url("banner.css");
 @import url("product.css");
-@import url("cart.css");
 @import url("modal.css");
+@import url("cart.css");
 @import url("tracking.css");
 @import url("admin.css");
 
-/* ===========================
-   商品圖片 Hover Overlay
-=========================== */
+/* 全站共用設定 */
 
-.product-image{
-
-    position:relative;
-
-    overflow:hidden;
-
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-.product-overlay{
-
-    position:absolute;
-
-    left:0;
-    top:0;
-
-    width:100%;
-    height:100%;
-
-    background:rgba(0,0,0,.35);
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    opacity:0;
-
-    transition:.35s;
-
-}
-
-.product:hover .product-overlay{
-
-    opacity:1;
-
-}
-
-.quick-view{
-
-    background:white;
-
+body{
+    font-family:"Microsoft JhengHei",sans-serif;
+    background:#f7f9fc;
     color:#333;
+}
 
-    border:none;
+a{
+    text-decoration:none;
+    color:inherit;
+}
 
-    padding:12px 24px;
+img{
+    display:block;
+    max-width:100%;
+}
 
-    border-radius:30px;
-
-    font-weight:bold;
-
+button{
     cursor:pointer;
-
-    transform:translateY(20px);
-
+    border:none;
     transition:.3s;
-
 }
-
-.product:hover .quick-view{
-
-    transform:translateY(0);
-
-}
-
-.quick-view:hover{
-
-    background:#00a8e8;
-
-    color:white;
-
-}
-
