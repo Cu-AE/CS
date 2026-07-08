@@ -1,92 +1,103 @@
-/* ==========================================
-   CS STORE
-   Layout
-========================================== */
+/* ===================================
+   Layout.css
+   Header / Nav / Footer
+=================================== */
 
 *{
-    margin:0;
-    padding:0;
     box-sizing:border-box;
 }
 
-body{
-    font-family:"微軟正黑體",sans-serif;
-    background:#d9ecf9;
-    color:#333;
-}
-
-/* =====================
-   Header
-===================== */
+/* Header */
 
 header{
-    background:linear-gradient(135deg,#0089ae,#65bacf);
-    color:white;
+    background:linear-gradient(135deg,#00b4db,#0083b0);
+    color:#fff;
     text-align:center;
-    padding:18px;
-    box-shadow:0 3px 10px rgba(0,0,0,.12);
+    padding:35px 20px;
 }
 
 header h1{
-    font-size:38px;
+    font-size:42px;
+    font-weight:700;
     margin-bottom:8px;
+    letter-spacing:2px;
 }
 
 header p{
     font-size:18px;
+    opacity:.95;
 }
 
-/* =====================
-   Navigation
-===================== */
+/* Navigation */
 
 nav{
+    position:sticky;
+    top:0;
+    z-index:999;
 
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
 
     padding:15px 40px;
 
-    background:white;
+    background:#fff;
 
-    position:sticky;
+    box-shadow:0 2px 12px rgba(0,0,0,.08);
+}
 
-    top:0;
+/* 左側 */
 
-    z-index:999;
-
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
-
+.nav-left{
+    display:flex;
+    align-items:center;
 }
 
 .logo{
-
-    font-size:30px;
-
+    font-size:28px;
     color:#00a6d6;
-
     font-weight:bold;
-
+    margin:0;
 }
 
-.nav-left{
-
-    display:flex;
-
-    align-items:center;
-
-}
+/* 中間 */
 
 .nav-center{
-
     flex:1;
+    display:flex;
+    justify-content:center;
+}
 
-    text-align:center;
+/* 搜尋框 */
+
+#search-box{
+
+    width:420px;
+    max-width:90%;
+
+    padding:12px 20px;
+
+    border-radius:40px;
+
+    border:1px solid #ddd;
+
+    outline:none;
+
+    transition:.3s;
+
+    font-size:15px;
 
 }
+
+#search-box:focus{
+
+    border-color:#00a8e8;
+
+    box-shadow:0 0 12px rgba(0,168,232,.2);
+
+}
+
+/* 右側 */
 
 .nav-right{
 
@@ -94,114 +105,112 @@ nav{
 
     align-items:center;
 
-    gap:15px;
+    gap:12px;
 
 }
 
-/* =====================
-   Search
-===================== */
+.nav-right button{
 
-#search-box{
-
-    width:420px;
-
-    max-width:80%;
-
-    padding:12px 18px;
-
-    border-radius:30px;
-
-    border:1px solid #ddd;
-
-    font-size:15px;
-
-    transition:.3s;
-
-}
-
-#search-box:focus{
-
-    outline:none;
-
-    border-color:#00a6d6;
-
-    box-shadow:0 0 10px rgba(0,166,214,.25);
-
-}
-
-/* =====================
-   Category
-===================== */
-
-.category-bar{
-
-    background:#f8f8f8;
-
-    padding:15px;
-
-    text-align:center;
-
-}
-
-#category-filter{
-
-    padding:10px 16px;
-
-    border-radius:10px;
-
-    border:1px solid #ccc;
-
-    font-size:15px;
-
-}
-
-/* =====================
-   Buttons
-===================== */
-
-button{
+    padding:10px 18px;
 
     border:none;
 
-    cursor:pointer;
-
     border-radius:10px;
+
+    background:#00a8e8;
+
+    color:#fff;
+
+    font-weight:600;
 
     transition:.3s;
 
 }
 
-button:hover{
+.nav-right button:hover{
+
+    background:#0089be;
 
     transform:translateY(-2px);
 
 }
 
-/* =====================
-   Footer
-===================== */
+/* 購物車 */
 
-footer{
+#cart-button{
 
-    margin-top:60px;
+    position:relative;
 
-    background:#a4cee4;
+}
+
+#cart-count{
+
+    position:absolute;
+
+    top:-8px;
+
+    right:-8px;
+
+    width:22px;
+
+    height:22px;
+
+    border-radius:50%;
+
+    background:#ff4757;
+
+    color:#fff;
+
+    font-size:12px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+/* 分類 */
+
+.category-bar{
+
+    background:#f5f7fa;
+
+    padding:15px;
 
     text-align:center;
 
-    padding:20px;
+    border-bottom:1px solid #eee;
+
+}
+
+#category-filter{
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    border:1px solid #ddd;
 
     font-size:15px;
 
 }
 
-/* =====================
-   Utility
-===================== */
+/* Footer */
 
-.hidden{
+footer{
 
-    display:none;
+    margin-top:60px;
+
+    background:#1f2937;
+
+    color:white;
+
+    text-align:center;
+
+    padding:25px;
+
+    font-size:15px;
 
 }
