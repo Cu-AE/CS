@@ -17,24 +17,35 @@ const products = [
     rating:4.8
   },
   { 
-    name:"Rich Man ",
-    price:299,
+    name:"第六張迷你專輯「Rich Man(RICH MAN GUITAR Ver.)」",
+    images:[
+        "images/吉他.jpg",
+        "images/吉他1.jpg",
+        "images/吉他2.jpg"
+        ],
+    img:"images/吉他.jpg",
+    price:600,
     category:"aespa",
-    img:"https://picsum.photos/220?0",
-    badge:"NEW",
+    badge:"HOT",
     badgeColor:"red",
-    desc:"aespa 最新專輯周邊商品",
-    rating:5
+    desc:"aespa 官方限定商品",
+    rating:4.9
   },
   { 
-    name:"dirty work2",
-    price:350,
+    name:"第一張正規專輯「Armageddon(Poster Ver.)」",
+    images:[
+        "images/messageImage_1763923184614.jpg",
+        "images/messageImage_1763993350748.jpg",
+        "images/messageImage_1763993366556.jpg",
+        "images/messageImage_1763993511659.jpg"
+        ],
+    img:"images/messageImage_1763923184614.jpg",
+    price:800,
     category:"aespa",
-    img:"https://picsum.photos/220?2",
-    badge:"SALE",
-    badgeColor:"green",
-    desc:"aespa 最新專輯周邊商品",
-    rating:4.9
+    badge:"HOT",
+    badgeColor:"red",
+    desc:"aespa 官方限定商品",
+    rating:5
   },
   { 
     name:"Blue Valentine",
