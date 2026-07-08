@@ -314,35 +314,72 @@ function addModalToCart(){
     結帳
 ========================*/
 function showCheckout(){
-  if(cart.length === 0){
-    alert("購物車是空的");
-    return;
-  }
 
-  let html = "";
-  cart.forEach(item=>{
-    html += `
-      <p>
-      ${item.name}
-      ×
-      ${item.qty}
-      =
-      $${item.price * item.qty}
-      </p>
+    const orderSummary = document.getElementById("order-summary");
+
+    orderSummary.innerHTML = `
+
+        <h3 style="margin-bottom:20px;">
+            📦 訂單明細
+        </h3>
+
+        ${cart.map(item=>`
+
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                margin-bottom:12px;
+            ">
+
+                <span>${item.name}</span>
+
+                <span>
+                    ${item.qty} × NT$${item.price}
+                </span>
+
+            </div>
+
+        `).join("")}
+
+        <hr>
+
+        <div style="
+            display:flex;
+            justify-content:space-between;
+        ">
+            <span>商品金額</span>
+            <strong>NT$${total}</strong>
+        </div>
+
+        <div style="
+            display:flex;
+            justify-content:space-between;
+            margin-top:10px;
+        ">
+            <span>運費</span>
+            <strong>NT$60</strong>
+        </div>
+
+        <hr>
+
+        <div style="
+            display:flex;
+            justify-content:space-between;
+            font-size:30px;
+            color:#ee4d2d;
+            font-weight:bold;
+        ">
+
+            <span>應付總額</span>
+
+            <span>NT$${total+60}</span>
+
+        </div>
+
     `;
-  });
 
-  const shipping = 60;
+    document.getElementById("checkout-modal").classList.add("show");
 
-  html += `
-    <hr>
-    <p>商品金額：$${total}</p>
-    <p>運費：$${shipping}</p>
-    <h2>應付金額：$${total + shipping}</h2>
-  `;
-
-  document.getElementById("order-summary").innerHTML = html;
-  document.getElementById("checkout-modal").classList.add("show");
 }
 
 function closeCheckout(){
