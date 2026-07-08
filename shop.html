@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="css/product.css">
     <link rel="stylesheet" href="css/modal.css">
     <link rel="stylesheet" href="css/cart.css">
-    <link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body>
@@ -211,7 +210,7 @@
 
 <div id="product-modal" class="modal">
 
-    <div class="modal-content">
+    <div class="product-modal-content">
 
         <!-- 關閉 -->
 
@@ -260,102 +259,100 @@
 
         <div class="modal-right">
 
-            <p
-                class="category"
-                id="modal-category">
-            </p>
+    <p class="category" id="modal-category"></p>
 
-            <h2 id="modal-name">
-            </h2>
+    <h2 id="modal-name"></h2>
 
-            <p
-                class="rating"
-                id="modal-rating">
-            </p>
+    <div class="modal-rating">
 
-            <p id="modal-price">
-            </p>
+        <span id="modal-rating"></span>
 
-            <p id="modal-desc">
-            </p>
+        <span class="sold">
+            已售出 999+
+        </span>
 
-            <hr>
+    </div>
 
-            <!-- 商品資訊 -->
+    <div id="modal-price"></div>
 
-            <div class="product-info-list">
+    <p id="modal-desc"></p>
 
-                <div class="info-row">
-                    <span>品牌</span>
-                    <span>CS STORE</span>
-                </div>
+    <hr>
 
-                <div class="info-row">
-                    <span>商品狀態</span>
-                    <span>現貨</span>
-                </div>
+    <div class="product-info-list">
 
-                <div class="info-row">
-                    <span>配送方式</span>
-                    <span>超商取貨</span>
-                </div>
+        <div class="info-row">
+            <span>品牌</span>
+            <span>CS STORE</span>
+        </div>
 
-            </div>
+        <div class="info-row">
+            <span>商品狀態</span>
+            <span>現貨</span>
+        </div>
 
-            <!-- 數量 -->
+        <div class="info-row">
+            <span>配送方式</span>
+            <span>7-11 / 全家</span>
+        </div>
 
-            <div class="qty-box">
+        <div class="info-row">
+            <span>付款方式</span>
+            <span>信用卡、轉帳</span>
+        </div>
 
-                <label>購買數量</label>
+    </div>
 
-                <div class="qty-control">
+    <hr>
 
-                    <button
-                        onclick="minusQty()">
-                        −
-                    </button>
+    <div class="qty-area">
 
-                    <input
-                        id="product-qty"
-                        type="number"
-                        value="1"
-                        min="1">
+        <label>購買數量</label>
 
-                    <button
-                        onclick="plusQty()">
-                        +
-                    </button>
+        <div class="qty-control">
 
-                </div>
+            <button onclick="changeQty(-1)">
+                -
+            </button>
 
-            </div>
+            <input
+                id="product-qty"
+                type="number"
+                value="1"
+                min="1">
 
-            <!-- 按鈕 -->
-
-            <div class="modal-buttons">
-
-                <button
-                    onclick="closeProduct()">
-
-                    返回
-
-                </button>
-
-                <button
-                    class="pocket-btn"
-                    onclick="addModalToCart()">
-
-                    🛒 加入購物車
-
-                </button>
-
-            </div>
+            <button onclick="changeQty(1)">
+                +
+            </button>
 
         </div>
 
     </div>
 
+    <div class="modal-action">
+
+        <button
+            class="favorite-large">
+
+            ❤ 收藏
+
+        </button>
+
+        <button
+            class="buy-large"
+            onclick="addModalToCart()">
+
+            🛒 加入購物車
+
+        </button>
+
+    </div>
 </div>
+    </div> <!-- modal-right -->
+
+</div> <!-- modal-content -->
+
+</div> <!-- product-modal -->
 
     <!-- 結帳 -->
 
