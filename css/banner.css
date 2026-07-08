@@ -20,7 +20,7 @@
     background:
         linear-gradient(rgba(0,0,0,.45),
                         rgba(0,0,0,.45)),
-        url("https://picsum.photos/1920/1080");
+        url("../images/IMG_5412.jpg");
 
     background-size:cover;
     background-position:center;
