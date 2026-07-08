@@ -63,35 +63,52 @@ function badgeText(type){
 }
 
 function displayProducts(items){
-  const container = document.getElementById("product-list");
-  container.innerHTML = "";
-  items.forEach(p=>{ const div = document.createElement("div");
-    div.className = "product";
-    div.innerHTML = `
+
+    const container = document.getElementById("product-list");
+
+    container.innerHTML = "";
+
+    items.forEach((p,index)=>{
+
+        const div = document.createElement("div");
+
+        div.className = "product";
+
+        div.innerHTML = `
 
 <div class="product-image">
 
     ${
-    p.badge
-    ? `<span class="product-badge ${p.badgeColor}">
-        ${badgeText(p.badge)}
-      </span>`
-    : ""
-}
+        p.badge
+        ? `<span class="product-badge badge-${p.badge.toLowerCase().replace("%","").replace("-","")}">
+            ${getBadgeIcon(p.badge)} ${p.badge}
+        </span>`
+        : ""
+    }
+
+    <button
+        class="favorite-btn"
+        onclick="toggleFavorite(${index})">
+
+        ❤
+
+    </button>
 
     <img
+    class="product-img skeleton"
     loading="lazy"
     src="${p.img}"
     alt="${p.name}"
-    onclick="showProduct(${products.indexOf(p)})">
+    onclick="showProduct(${products.indexOf(p)})"
+    onload="this.classList.remove('skeleton')">
 
     <div class="product-overlay">
 
         <button
             class="quick-view"
-            onclick="showProduct(${products.indexOf(p)})">
+            onclick="showProduct(${index})">
 
-            快速查看
+            👁 快速查看
 
         </button>
 
@@ -102,33 +119,63 @@ function displayProducts(items){
 <div class="product-body">
 
     <p class="product-category">
+
         ${p.category.toUpperCase()}
+
     </p>
 
     <h2>
+
         ${p.name}
+
     </h2>
 
     <p class="rating">
+
         ⭐ ${p.rating || 5}
+
     </p>
 
     <p class="price">
+
         NT$ ${p.price}
+
     </p>
 
     <button
         class="buy-btn"
-        onclick="addToCart('${p.name}',${p.price})"
-    >
+        onclick="addToCart('${p.name}',${p.price})">
+
         🛒 加入購物車
+
     </button>
 
 </div>
 
 `;
-    container.appendChild(div);
-  });
+
+        container.appendChild(div);
+
+    });
+
+}
+
+function changeQty(step){
+
+    const input = document.getElementById("product-qty");
+
+    let qty = Number(input.value);
+
+    qty += step;
+
+    if(qty < 1){
+
+        qty = 1;
+
+    }
+
+    input.value = qty;
+
 }
 /*========================
     收藏功能
@@ -475,6 +522,32 @@ function handleSwipe(){
     else if(distance < -50){
 
         prevSlide();
+
+    }
+
+}
+
+function getBadgeIcon(badge){
+
+    switch(badge){
+
+        case "HOT":
+            return "🔥";
+
+        case "NEW":
+            return "🆕";
+
+        case "SALE":
+            return "💰";
+
+        case "LIMITED":
+            return "⭐";
+
+        case "PREORDER":
+            return "📦";
+
+        default:
+            return "";
 
     }
 
